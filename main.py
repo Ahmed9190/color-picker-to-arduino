@@ -1,3 +1,4 @@
+from serial import Serial
 from constants import ENTER_ASCII_CODE
 import cv2
 from arduino_communication import send_to_arduino, ser
@@ -6,6 +7,7 @@ from drawing import draw_color_square, draw_center_point
 
 url = "http://192.168.1.18:4747/video"
 cap = cv2.VideoCapture(url)
+serial = Serial("COM3", 9600)
 
 while True:
     ret, frame = cap.read()
@@ -37,7 +39,8 @@ while True:
 
     key = cv2.waitKey(1)
     if key == ENTER_ASCII_CODE:
-        send_to_arduino(cmyk_color_int)
+
+        send_to_arduino(cmyk_color_int, serial)
         print(f"CMYK Color Sent to Arduino: {cmyk_color_int}")
 
     elif key & 0xFF == ord("q"):
