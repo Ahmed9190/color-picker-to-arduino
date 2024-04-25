@@ -29,22 +29,7 @@ void disableAllPumps(int c, int m, int y, int k){
   digitalWrite(k, HIGH);
 }
 
-void pumpColor(int pin, int percent){
-  if(percent == 0) return;
-
-  int pumpTime = percentToMsTime(percent);
-
-  digitalWrite(pin, LOW);
-  delay(pumpTime);
-  digitalWrite(pin, HIGH);
-}
-
-int SCALE = 10;
-int percentToMsTime(int percent){
-  assert(percent >= 0 && percent <= 100);
-
-  return SCALE * percent;
-}
+void pumpColor(int pin, int percent);
 
 void loop() {
   if (Serial.available() > 0) {
@@ -52,9 +37,33 @@ void loop() {
     int c_percent, m_percent, y_percent, k_percent;
     sscanf(data.c_str(), "%d,%d,%d,%d", &c_percent, &m_percent, &y_percent, &k_percent);
     
+    Serial.print("Parsed percentages: ");
+    Serial.print(c_percent);
+    Serial.print(", ");
+    Serial.print(m_percent);
+    Serial.print(", ");
+    Serial.print(y_percent);
+    Serial.print(", ");
+    Serial.println(k_percent);
+
     pumpColor(C_PIN, c_percent);
     pumpColor(M_PIN, m_percent);
     pumpColor(Y_PIN, y_percent);
     pumpColor(K_PIN, k_percent);
   }
+}
+
+void pumpColor(int pin, int percent){
+  if(percent == 0) return;
+
+  Serial.print("Pumping ");
+  Serial.print(percent);
+  Serial.print("% on pin ");
+  Serial.println(pin);
+
+  int pumpTime = percentToMsTime(percent);
+
+  digitalWrite(pin, LOW);
+  delay(pumpTime);
+  digitalWrite(pin, HIGH);
 }
