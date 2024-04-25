@@ -17,6 +17,17 @@ class TestSendToArduino(unittest.TestCase):
         mock_serial.write.assert_called_once_with(b"100,0,0,0\n")
         mock_sleep.assert_called_once_with(0.1)
 
+    def test_send_to_arduino_different_values(self):
+        # Arrange
+        cmyk = (50, 50, 50, 50)
+        mock_serial = MagicMock()
+
+        # Act
+        send_to_arduino(cmyk, serial=mock_serial)
+
+        # Assert
+        mock_serial.write.assert_called_once_with(b"50,50,50,50\n")
+
 
 if __name__ == "__main__":
     unittest.main()
