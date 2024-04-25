@@ -5,7 +5,7 @@ from arduino_communication import send_to_arduino
 from color_conversion import rgb_to_cmyk, get_color_name
 from drawing import draw_color_square, draw_center_point
 
-url = "http://192.168.1.18:4747/video"
+url = "http://192.168.1.37:4747/video"
 cap = cv2.VideoCapture(url)
 serial = Serial("COM3", 9600)
 
