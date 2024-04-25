@@ -7,9 +7,8 @@ serial = serial.Serial("COM3", 9600)
 
 
 # Test each color individually
-serial.write("START\n".encode())
-# time.sleep(2)  # Wait for the Arduino to process the start message
-
+# send_to_arduino((0, 0, 0, 0), serial)  # Cyan
+time.sleep(2)
 send_to_arduino((100, 0, 0, 0), serial)  # Cyan
 time.sleep(2)
 send_to_arduino((0, 100, 0, 0), serial)  # Magenta

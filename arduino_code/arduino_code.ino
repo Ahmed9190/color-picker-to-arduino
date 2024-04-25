@@ -46,19 +46,9 @@ int percentToMsTime(int percent){
   return SCALE * percent;
 }
 
-bool started = false;
-
 void loop() {
   if (Serial.available() > 0) {
     String data = Serial.readStringUntil('\n');
-    
-    if (!started) {
-      if (data == "START") {
-        started = true;
-      }
-      return;
-    }
-
     int c_percent, m_percent, y_percent, k_percent;
     sscanf(data.c_str(), "%d,%d,%d,%d", &c_percent, &m_percent, &y_percent, &k_percent);
 
