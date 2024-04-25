@@ -1,6 +1,8 @@
 import cv2
 import numpy as np
 
+from colors import nn_model, COLORS
+
 
 def rgb_to_cmyk(rgb):
     r, g, b = rgb
