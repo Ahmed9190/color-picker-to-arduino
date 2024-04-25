@@ -1,3 +1,7 @@
+import cv2
+import numpy as np
+
+
 def rgb_to_cmyk(rgb):
     r, g, b = rgb
     if r == g == b == 0:
