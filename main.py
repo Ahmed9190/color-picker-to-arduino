@@ -1,7 +1,7 @@
 from serial import Serial
 from constants import ENTER_ASCII_CODE
 import cv2
-from arduino_communication import send_to_arduino, ser
+from arduino_communication import send_to_arduino
 from color_conversion import rgb_to_cmyk, get_color_name
 from drawing import draw_color_square, draw_center_point
 
@@ -48,4 +48,4 @@ while True:
 
 cap.release()
 cv2.destroyAllWindows()
-ser.close()
+serial.close()
