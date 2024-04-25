@@ -56,7 +56,7 @@ void loop() {
   if (Serial.available() > 0) {
     String data = Serial.readStringUntil('\n');
     int c_percent, m_percent, y_percent, k_percent;
-    sscanf(data.c_str(), "%d,%d,%d,%d", &c_percent, &m_percent, &y_percent, &k_percent);
+    sscanf(data.c_str(), "{%d,%d,%d,%d}", &c_percent, &m_percent, &y_percent, &k_percent);
 
     Serial.print("Parsed percentages: ");
     Serial.print(c_percent);
@@ -66,6 +66,7 @@ void loop() {
     Serial.print(y_percent);
     Serial.print(", ");
     Serial.println(k_percent);    
+
     pumpColor(C_PIN, c_percent);
     pumpColor(M_PIN, m_percent);
     pumpColor(Y_PIN, y_percent);

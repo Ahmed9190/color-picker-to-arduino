@@ -1,26 +1,19 @@
 import serial
 import time
 
+from arduino_communication import send_to_arduino
+
 ser = serial.Serial("COM3", 9600)
 
 
-def send_to_arduino(cmyk):
-    c, m, y, k = cmyk
-    ser.write(f"{c},{m},{y},{k}\n".encode())
-    time.sleep(2)
-
-    line = ser.readline().decode("utf-8").strip()
-    print(f"Received from Arduino: {line}")
-
-
 # Test each color individually
-send_to_arduino((100, 0, 0, 0))  # Cyan
+send_to_arduino((100, 0, 0, 0), ser)  # Cyan
 time.sleep(2)
-send_to_arduino((0, 100, 0, 0))  # Magenta
+send_to_arduino((0, 100, 0, 0), ser)  # Magenta
 time.sleep(2)
-send_to_arduino((0, 0, 100, 0))  # Yellow
+send_to_arduino((0, 0, 100, 0), ser)  # Yellow
 time.sleep(2)
-send_to_arduino((0, 0, 0, 100))  # Black
+send_to_arduino((0, 0, 0, 100), ser)  # Black
 time.sleep(2)
 
 ser.close()
