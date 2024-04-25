@@ -13,9 +13,14 @@ def send_to_arduino(cmyk):
     print(f"Received from Arduino: {line}")
 
 
+# Test each color individually
 send_to_arduino((100, 0, 0, 0))  # Cyan
+time.sleep(2)
 send_to_arduino((0, 100, 0, 0))  # Magenta
+time.sleep(2)
 send_to_arduino((0, 0, 100, 0))  # Yellow
+time.sleep(2)
 send_to_arduino((0, 0, 0, 100))  # Black
+time.sleep(2)
 
 ser.close()
