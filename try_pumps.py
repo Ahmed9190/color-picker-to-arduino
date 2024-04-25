@@ -3,17 +3,20 @@ import time
 
 from arduino_communication import send_to_arduino
 
-ser = serial.Serial("COM3", 9600)
+serial = serial.Serial("COM3", 9600)
 
 
 # Test each color individually
-send_to_arduino((100, 0, 0, 0), ser)  # Cyan
+serial.write("START\n".encode())
+# time.sleep(2)  # Wait for the Arduino to process the start message
+
+send_to_arduino((100, 0, 0, 0), serial)  # Cyan
 time.sleep(2)
-send_to_arduino((0, 100, 0, 0), ser)  # Magenta
+send_to_arduino((0, 100, 0, 0), serial)  # Magenta
 time.sleep(2)
-send_to_arduino((0, 0, 100, 0), ser)  # Yellow
+send_to_arduino((0, 0, 100, 0), serial)  # Yellow
 time.sleep(2)
-send_to_arduino((0, 0, 0, 100), ser)  # Black
+send_to_arduino((0, 0, 0, 100), serial)  # Black
 time.sleep(2)
 
-ser.close()
+serial.close()
